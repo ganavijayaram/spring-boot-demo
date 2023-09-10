@@ -68,5 +68,12 @@ public class StudentController {
         return student;
     }
 
+    //POST Request
+    @DeleteMapping("/students/{id}/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteStudent(@PathVariable("id") int studentId) {
+        return "Student Deleted!";
+    }
+
 
 }
