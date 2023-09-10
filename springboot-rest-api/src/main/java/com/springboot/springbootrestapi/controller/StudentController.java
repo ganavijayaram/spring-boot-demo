@@ -60,5 +60,13 @@ public class StudentController {
         return student;
     }
 
+    //POST Request
+    @PutMapping("/students/{id}/update")
+    @ResponseStatus(HttpStatus.OK)
+    public Student updateStudent(@RequestBody Student student,
+                                 @PathVariable("id") int studentId) {
+        return student;
+    }
+
 
 }
