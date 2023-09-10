@@ -2,6 +2,7 @@ package com.springboot.springbootrestapi.controller;
 
 import com.springboot.springbootrestapi.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -32,6 +33,15 @@ public class StudentController {
         students.add(new Student(4,"Sachin", "Gowda"));
 
         return students;
+    }
+
+    // Handling path variables
+    @GetMapping("/students/{id}/{firstName}/{lastName}")
+    public Student studentPathVariable(@PathVariable("id") int studentId,
+                                       @PathVariable String firstName,
+                                       @PathVariable String lastName) {
+
+        return new Student(studentId,firstName, lastName);
     }
 
 }
