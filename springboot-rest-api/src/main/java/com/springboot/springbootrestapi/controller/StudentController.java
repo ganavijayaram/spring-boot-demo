@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StudentController {
 
-    // returning bean
+    // returning java bean as student as JSON
     @GetMapping("/student")
     public Student getStudent() {
         Student student = new Student(
