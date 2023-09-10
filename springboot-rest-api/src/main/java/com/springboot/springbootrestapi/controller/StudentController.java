@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("students")
 public class StudentController {
 
     // returning java bean as student as JSON
@@ -27,7 +28,7 @@ public class StudentController {
 
 
     // returning list as JSON
-    @GetMapping("/students")
+    @GetMapping
     public ResponseEntity<List<Student>> getStudents() {
         List<Student> students = new ArrayList<Student>();
         students.add(new Student(1,"Ganavi", "Jayaram"));
@@ -40,7 +41,7 @@ public class StudentController {
 
     // Handling path variables
     //http://localhost:8080/students/1/Ganavi/Jayaram
-    @GetMapping("/students/{id}/{firstName}/{lastName}")
+    @GetMapping("/{id}/{firstName}/{lastName}")
     public ResponseEntity<Student> studentPathVariable(@PathVariable("id") int studentId,
                                        @PathVariable String firstName,
                                        @PathVariable String lastName) {
@@ -50,7 +51,7 @@ public class StudentController {
 
     //using requestParam
     //http://localhost:8080/students/query?id=1&firstName=GANAVI&lastName=JAYARAM
-    @GetMapping("/students/query")
+    @GetMapping("/query")
     public ResponseEntity<Student> studentRequestParan(@RequestParam int id,
                                        @RequestParam String firstName,
                                        @RequestParam String lastName){
@@ -58,14 +59,14 @@ public class StudentController {
     }
 
     //POST Request
-    @PostMapping("/students/create")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
     //POST Request
-    @PutMapping("/students/{id}/update")
+    @PutMapping("/{id}/update")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Student> updateStudent(@RequestBody Student student,
                                  @PathVariable("id") int studentId) {
@@ -73,7 +74,7 @@ public class StudentController {
     }
 
     //POST Request
-    @DeleteMapping("/students/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteStudent(@PathVariable("id") int studentId) {
         return ResponseEntity.ok("Student Deleted!");
